@@ -1,0 +1,5 @@
+- if logged_in?
+  %p Click the link below to send a tweet.
+  = link_to 'Send a tweet', new_tweet_path
+- else
+  %p You must log in to send a tweet.
