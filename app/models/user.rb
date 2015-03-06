@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
       user.oauth_token = auth.credentials.token
       user.oauth_secret = auth.credentials.secret
-      bin
       user.save!
     end
   end
