@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    logged_in? ? @current_user ||= User.find(session[:user_id]) : nil
+    if logged_in?
+      @current_user ||= User.find(session[:user_id])
+      @current_user.get_profile_data_from_provider
+      @current_user
+    else
+      nil
+    end
   end
 end

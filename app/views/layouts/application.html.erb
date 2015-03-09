@@ -9,7 +9,10 @@
   <body>
     <div>
       <% if logged_in? %>
-        Signed in as <strong><%= current_user.name %></strong>!
+        <p>Signed in as <strong><%= current_user.name %></strong>!</p>
+        <p>Logged into Twitter as:
+        <%= link_to current_user.screen_name, current_user.url %>
+        <%= img(src="#{current_user.image_url}") %>
         <%= link_to 'Sign out', signout_path, id: 'sign_out' %>
       <% else %>
         <%= link_to 'Sign in with Twitter', '/auth/twitter', id: 'sign_in' %>
