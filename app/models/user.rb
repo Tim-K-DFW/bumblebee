@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
 
   def get_profile_data_from_provider
     client = set_up_twitter_client
-    binding.pry
     @screen_name = client.user.screen_name
     @url = client.user.url.to_s
     @image_url = client.user.profile_image_url.to_s.gsub('normal', 'mini')
