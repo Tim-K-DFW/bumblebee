@@ -19,6 +19,8 @@ gem 'figaro'
 gem 'twitter', '~> 5.3.1'
 gem 'omniauth-twitter', '~> 1.0.1'
 
+gem 'omniauth-facebook'
+
 
 
 group :development do

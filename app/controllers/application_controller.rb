@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    logged_in? ? @current_user ||= User.find(session[:user_id]) : nil
+    if logged_in?
+      @current_user ||= User.find(session[:user_id])
+      @current_user.screen_name = session[:screen_name]
+      @current_user.image_url = session[:image_url]
+      @current_user.url = session[:url]
+      @current_user
+    else
+      nil
+    end
   end
 end
