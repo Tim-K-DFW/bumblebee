@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_reader :screen_name, :image_url, :url
+  attr_accessor :screen_name, :image_url, :url
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

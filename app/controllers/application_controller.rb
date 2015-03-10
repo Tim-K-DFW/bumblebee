@@ -11,7 +11,9 @@ class ApplicationController < ActionController::Base
   def current_user
     if logged_in?
       @current_user ||= User.find(session[:user_id])
-      @current_user.get_profile_data_from_provider
+      @current_user.screen_name = session[:screen_name]
+      @current_user.image_url = session[:image_url]
+      @current_user.url = session[:url]
       @current_user
     else
       nil

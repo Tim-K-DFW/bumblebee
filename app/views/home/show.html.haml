@@ -1,11 +1,4 @@
 - if logged_in?
-  Logged into Twitter as:
-  = link_to @user.screen_name, @user.url
-  %img(src="#{@user.image_url}")
-
-  %br
-
-  %p Click the link below to send a tweet.
   = link_to 'Send a tweet', new_tweet_path
 - else
   %p You must log in to send a tweet.
