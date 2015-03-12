@@ -1,3 +1,15 @@
-%h1 Success!
-%p Your tweet has been sent!
-= link_to 'Would you like to send another one?', new_tweet_path
+.container
+  .row
+    .col-sm-6.col-sm-offset-1.voffset-5
+      %h3 Here is just to make sure you post got published:
+      - if status.blank?
+        %p Well, you decided not to post on any of the platforms... and it went well.
+      - else
+        - status.each do |provider|
+          %p
+            = "To #{provider[0].to_s.humanize}:"
+            %strong= provider[1]
+      %br
+      %br
+      %br
+      = link_to 'Post something else', root_path, class: 'btn btn-primary btn-lg'

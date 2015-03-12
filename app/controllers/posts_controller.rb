@@ -3,11 +3,19 @@ class PostsController < ApplicationController
   end
 
   def create
-    poster = Poster.new(params[:post])
-    poster.publish_to_all
+    poster = Poster.new(params[:post], logins_from_session)
+    poster.batch_publish
+    render '/posts/create', locals: {status: poster.status}
   end
 
-  def twitter_params
-    params.require(:tweet).permit(:status)
+  private
+
+  def logins_from_session
+    result = {}
+    [:facebook, :twitter].each do |provider|
+      result[provider] = session[provider] if session[provider]
+    end
+    result
   end
+
 end

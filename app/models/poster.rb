@@ -1,17 +1,20 @@
 class Poster
-  attr_accessor :body, :providers, :author
+  attr_accessor :body, :providers, :author, :status, :logins
 
-  def initialize(args)
-    @body = args[:body]
-    @providers = get_providers(args)
+  def initialize(post, logins)
+    @body = post[:body]
+    @providers = get_providers(post)
+    @status = {}
+    @logins = logins
   end
 
-  def publish_to_all
+  def batch_publish
     providers.each do |provider|
-      if session[provider]
-        author = Identity.where(provider: provider, uid: session[provider])
+      if logins[provider]
+        @author = Identity.where(provider: provider, uid: logins[provider]).first
+        status[provider] = instance_eval("post_to_#{provider}(body)")
       else
-
+        status[provider] = "You cannot post on #{provider.to_s.humanize} until you log in. To log in, just click the link above."
       end
     end
   end
@@ -25,17 +28,24 @@ class Poster
     result
   end
 
-
-  #were moved from Identity model, need that argument
-
-  def post_to_fb(post)
-    client = set_up_facebook_client
-    client.put_connections("me", "feed", :message => post)
+  def post_to_facebook(post)
+    client = author.set_up_facebook_client
+    begin
+      outcome = 'Success. Check out the post (coming soon).' if client.put_connections("me", "feed", :message => post)
+    rescue
+      outcome = 'Error while posting: (coming soon)'
+    end
+    outcome
   end
 
-  def tweet(tweet)
-    client = set_up_twitter_client
-    client.update(tweet)
+  def post_to_twitter(post)
+    client = author.set_up_twitter_client
+    begin
+      outcome = 'Success. Check out the post (coming soon).' if client.update(post)
+    rescue
+      outcome = 'Error while posting: (coming soon)'
+    end
+    outcome
   end
 
 end

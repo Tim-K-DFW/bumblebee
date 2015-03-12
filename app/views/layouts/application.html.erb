@@ -7,10 +7,11 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <div class='container'
 
-  <%= render 'shared/signin_status' %>
-
-  <%= yield %>
-
+      <%= render 'shared/signin_status' %>
+      <%= yield %>
+      
+    </div>
   </body>
 </html>

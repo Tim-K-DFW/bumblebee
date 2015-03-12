@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_identity, :logged_in?
 
   def logged_in?(provider)
-    !!session[provider.to_sym]
+    !!session[provider]
   end
 
   def current_identity(provider)

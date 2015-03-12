@@ -7,7 +7,7 @@ class Identity < ActiveRecord::Base
       identity.uid = auth.uid
       identity.oauth_token = auth.credentials.token
       identity.oauth_secret = auth.credentials.secret
-      identity.user_id = User.first.id
+      identity.user_id = User.first.blank? ? User.create.id : User.first.id
       eval("identity.get_profile_data_from_#{identity.provider}")
       identity.save!
     end
@@ -27,8 +27,6 @@ class Identity < ActiveRecord::Base
     self.url = client.user.url.to_s
     self.image_url = client.user.profile_image_url.to_s.gsub('normal', 'mini')
   end
-
-  private
 
   def set_up_twitter_client
     client = Twitter::REST::Client.new do |config|

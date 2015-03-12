@@ -1,11 +1,15 @@
-%h3 Post an update:
-%p
-  = form_for :post, url: posts_path, method: :post do |f|
-    = f.text_area :body
-    %br
-    = label_tag 'on Twitter'
-    = f.check_box :to_twitter
-    = label_tag 'on Facebook'
-    = f.check_box :to_facebook
-    %br
-    = f.submit 'Post'
+.container
+  .row
+    .col-sm-6.col-sm-offset-1.voffset-5
+      %h3 Post an update:
+      .form-inline
+        = form_for :post, url: posts_path, method: :post do |f|
+          = f.text_area :body, cols: 50, rows: 10
+          %br
+          = f.label :to_twitter, 'on Twitter'
+          = f.check_box :to_twitter
+          = f.label :to_facebook, 'on Facebook'
+          = f.check_box :to_facebook
+          %br
+          %br
+          = f.submit 'Post', class: 'btn btn-success btn-lg'

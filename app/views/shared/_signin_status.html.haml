@@ -1,28 +1,20 @@
-%div
-  - if logged_in?(:facebook)
-    %p
-      Signed in as
-      %strong= current_identity(:facebook).screen_name
-      !
-    %p
-      Logged into Facebook as:
-      = link_to current_identity(:facebook).screen_name, current_identity(:facebook).url
-    %img(src="#{current_identity(:facebook).image_url}")
-    = link_to 'Sign out', signout_path(:facebook)
-  - else
-    = link_to 'Sign in with Facebook', '/auth/facebook', id: 'sign_in'
+.row
+  .col-sm-3
+    - if logged_in?(:facebook)
+      %p
+        Logged into Facebook as:
+        = link_to current_identity(:facebook).screen_name, current_identity(:facebook).url
+      %img(src="#{current_identity(:facebook).image_url}")
+      = link_to 'Sign out', signout_path(:facebook)
+    - else
+      = link_to 'Sign in to post on Facebook', '/auth/facebook', id: 'sign_in'
 
-  %br
-  
-  - if logged_in?(:twitter)
-    %p
-      Signed in as
-      %strong= current_identity(:twitter).screen_name
-      !
-    %p
-      Logged into Twitter as:
-      = link_to current_identity(:twitter).screen_name, current_identity(:twitter).url
-    %img(src="#{current_identity(:twitter).image_url}")
-    = link_to 'Sign out', signout_path(:twitter)
-  - else
-    = link_to 'Sign in with Twitter', '/auth/twitter', id: 'sign_in'
+  .col-sm-3-offset-3
+    - if logged_in?(:twitter)
+      %p
+        Logged into Twitter as:
+        = link_to current_identity(:twitter).screen_name, current_identity(:twitter).url
+      %img(src="#{current_identity(:twitter).image_url}")
+      = link_to 'Sign out', signout_path(:twitter)
+    - else
+      = link_to 'Sign in to post on Twitter', '/auth/twitter', id: 'sign_in'
