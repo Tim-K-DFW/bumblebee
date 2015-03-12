@@ -20,6 +20,7 @@ gem 'twitter', '~> 5.3.1'
 gem 'omniauth-twitter', '~> 1.0.1'
 
 gem 'omniauth-facebook'
+gem "koala", "~> 1.10.0rc"
 
 
 
