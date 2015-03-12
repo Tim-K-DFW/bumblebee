@@ -1,0 +1,11 @@
+%h3 Post an update:
+%p
+  = form_for :post, url: posts_path, method: :post do |f|
+    = f.text_area :body
+    %br
+    = label_tag 'on Twitter'
+    = f.check_box :to_twitter
+    = label_tag 'on Facebook'
+    = f.check_box :to_facebook
+    %br
+    = f.submit 'Post'
