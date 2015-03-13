@@ -54,7 +54,7 @@ class Poster
     begin
       outcome = 'Success. Check out the post (coming soon).' if client.post_status(post)
     rescue
-      outcome = 'Error while posting: (coming soon)'
+      outcome = 'Error while posting. If this is your first time posting to this user, make sure that country and stare picklists are disabled (Setup/Data Management in Salesforce).'
     end
     outcome
   end
