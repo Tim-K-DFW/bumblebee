@@ -15,6 +15,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'pg'
 gem 'figaro'
+gem 'omniauth'
 
 gem 'twitter', '~> 5.3.1'
 gem 'omniauth-twitter', '~> 1.0.1'
@@ -26,6 +27,9 @@ gem 'restforce'
 gem 'omniauth-salesforce'
 gem 'databasedotcom'
 gem 'databasedotcom-rails'
+
+gem 'omniauth-linkedin'
+gem 'linkedin'
 
 
 group :development do

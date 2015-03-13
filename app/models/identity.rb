@@ -33,6 +33,12 @@ class Identity < ActiveRecord::Base
     self.image_url = auth.info.image
   end
 
+  def get_profile_data_from_linkedin(auth)
+    self.screen_name = auth.info.name
+    self.url = auth.info.urls.public_profile
+    self.image_url = auth.info.image
+  end
+
   def set_up_twitter_client
     client = Twitter::REST::Client.new do |config|
       config.consumer_key = ENV["TWITTER_KEY"]
@@ -55,6 +61,12 @@ class Identity < ActiveRecord::Base
 
   def set_up_facebook_client
     client = Koala::Facebook::API.new(oauth_token)
+  end
+
+  def set_up_linkedin_client
+    client = LinkedIn::Client.new(ENV["LINKEDIN_KEY"], ENV["LINKEDIN_SECRET"])
+    client.authorize_from_access(oauth_token, oauth_secret)
+    client
   end
 
 end

@@ -40,3 +40,17 @@
       = link_to 'Sign out', signout_path(:salesforce)
     - else
       = link_to 'Sign in to post on Saleforce Chatter', '/auth/salesforce', id: 'sign_in'
+
+  .col-sm-3
+    - if logged_in?(:linkedin)
+      %p
+        Logged into
+        %strong Linkedin
+        as:
+        %br
+        = link_to current_identity(:linkedin).screen_name, current_identity(:linkedin).url
+      %img(src="#{current_identity(:linkedin).image_url}")
+      %br
+      = link_to 'Sign out', signout_path(:linkedin)
+    - else
+      = link_to 'Sign in to post on LinkedIn', '/auth/linkedin', id: 'sign_in'
