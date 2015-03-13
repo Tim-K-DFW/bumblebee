@@ -22,6 +22,10 @@ gem 'omniauth-twitter', '~> 1.0.1'
 gem 'omniauth-facebook'
 gem "koala", "~> 1.10.0rc"
 
+gem 'restforce'
+gem 'omniauth-salesforce'
+gem 'databasedotcom'
+gem 'databasedotcom-rails'
 
 
 group :development do
