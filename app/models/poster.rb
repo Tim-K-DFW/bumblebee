@@ -25,6 +25,7 @@ class Poster
     result = []
     result << 'twitter'.to_sym if args[:to_twitter] == '1'
     result << 'facebook'.to_sym if args[:to_facebook] == '1'
+    result << 'salesforce'.to_sym if args[:to_salesforce] == '1'
     result
   end
 
@@ -42,6 +43,16 @@ class Poster
     client = author.set_up_twitter_client
     begin
       outcome = 'Success. Check out the post (coming soon).' if client.update(post)
+    rescue
+      outcome = 'Error while posting: (coming soon)'
+    end
+    outcome
+  end
+
+  def post_to_salesforce(post)
+    client = author.set_up_salesforce_client
+    begin
+      outcome = 'Success. Check out the post (coming soon).' if client.post_status(post)
     rescue
       outcome = 'Error while posting: (coming soon)'
     end

@@ -2,19 +2,41 @@
   .col-sm-3
     - if logged_in?(:facebook)
       %p
-        Logged into Facebook as:
+        Logged into 
+        %strong Facebook 
+        as:
+        %br
         = link_to current_identity(:facebook).screen_name, current_identity(:facebook).url
       %img(src="#{current_identity(:facebook).image_url}")
+      %br
       = link_to 'Sign out', signout_path(:facebook)
     - else
       = link_to 'Sign in to post on Facebook', '/auth/facebook', id: 'sign_in'
 
-  .col-sm-3-offset-3
+  .col-sm-3
     - if logged_in?(:twitter)
       %p
-        Logged into Twitter as:
+        Logged into
+        %strong Twitter
+        as:
+        %br
         = link_to current_identity(:twitter).screen_name, current_identity(:twitter).url
       %img(src="#{current_identity(:twitter).image_url}")
+      %br
       = link_to 'Sign out', signout_path(:twitter)
     - else
       = link_to 'Sign in to post on Twitter', '/auth/twitter', id: 'sign_in'
+
+  .col-sm-3
+    - if logged_in?(:salesforce)
+      %p
+        Logged into
+        %strong Salesforce
+        as:
+        %br
+        = link_to current_identity(:salesforce).screen_name, current_identity(:salesforce).url
+      %img(src="#{current_identity(:salesforce).image_url}")
+      %br
+      = link_to 'Sign out', signout_path(:salesforce)
+    - else
+      = link_to 'Sign in to post on Saleforce Chatter', '/auth/salesforce', id: 'sign_in'
