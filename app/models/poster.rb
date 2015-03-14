@@ -27,6 +27,7 @@ class Poster
     result << 'facebook'.to_sym if args[:to_facebook] == '1'
     result << 'salesforce'.to_sym if args[:to_salesforce] == '1'
     result << 'linkedin'.to_sym if args[:to_linkedin] == '1'
+    result << 'google_oauth2'.to_sym if args[:to_google_plus] == '1'
     result
   end
 
@@ -62,6 +63,17 @@ class Poster
 
   def post_to_linkedin(post)
     client = author.set_up_linkedin_client
+    begin
+      outcome = 'Success. Check out the post (coming soon).' if client.add_share(:comment => post)
+    rescue
+      outcome = 'Error while posting: (coming soon)'
+    end
+    outcome
+  end
+
+  def post_to_google_oauth2(post)
+    client = author.set_up_google_plus_client
+    binding.pry
     begin
       outcome = 'Success. Check out the post (coming soon).' if client.add_share(:comment => post)
     rescue

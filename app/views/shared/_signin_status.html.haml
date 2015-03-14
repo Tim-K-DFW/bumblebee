@@ -11,7 +11,7 @@
       %br
       = link_to 'Sign out', signout_path(:facebook)
     - else
-      = link_to 'Sign in to post on Facebook', '/auth/facebook', id: 'sign_in'
+      = link_to 'Sign in to post on Facebook', '/auth/facebook'
 
   .col-sm-3
     - if logged_in?(:twitter)
@@ -25,7 +25,7 @@
       %br
       = link_to 'Sign out', signout_path(:twitter)
     - else
-      = link_to 'Sign in to post on Twitter', '/auth/twitter', id: 'sign_in'
+      = link_to 'Sign in to post on Twitter', '/auth/twitter'
 
   .col-sm-3
     - if logged_in?(:salesforce)
@@ -39,7 +39,7 @@
       %br
       = link_to 'Sign out', signout_path(:salesforce)
     - else
-      = link_to 'Sign in to post on Saleforce Chatter', '/auth/salesforce', id: 'sign_in'
+      = link_to 'Sign in to post on Saleforce Chatter', '/auth/salesforce'
 
   .col-sm-3
     - if logged_in?(:linkedin)
@@ -53,4 +53,18 @@
       %br
       = link_to 'Sign out', signout_path(:linkedin)
     - else
-      = link_to 'Sign in to post on LinkedIn', '/auth/linkedin', id: 'sign_in'
+      = link_to 'Sign in to post on LinkedIn', '/auth/linkedin'
+
+  / .col-sm-2
+  /   - if logged_in?(:google_oauth2)
+  /     %p
+  /       Logged into
+  /       %strong Google+
+  /       as:
+  /       %br
+  /       = link_to current_identity(:google_oauth2).screen_name, current_identity(:google_oauth2).url
+  /     %img(src="#{current_identity(:google_oauth2).image_url}")
+  /     %br
+  /     = link_to 'Sign out', signout_path(:google_oauth2)
+  /   - else
+  /     = link_to 'Sign in to post on Google+', '/auth/google_oauth2'

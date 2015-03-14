@@ -9,13 +9,12 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
+# gem 'spring',        group: :development
 gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'pg'
 gem 'figaro'
-gem 'omniauth'
 
 gem 'twitter', '~> 5.3.1'
 gem 'omniauth-twitter', '~> 1.0.1'
@@ -30,6 +29,9 @@ gem 'databasedotcom-rails'
 
 gem 'omniauth-linkedin'
 gem 'linkedin'
+
+gem 'omniauth-google-oauth2'
+gem 'google-api-client', :require => 'google/api_client'
 
 
 group :development do

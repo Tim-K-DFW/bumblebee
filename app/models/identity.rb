@@ -39,6 +39,12 @@ class Identity < ActiveRecord::Base
     self.image_url = auth.info.image
   end
 
+  def get_profile_data_from_google_oauth2(auth)
+    self.screen_name = auth.info.name
+    self.url = auth.info.urls.Google
+    self.image_url = auth.info.image
+  end
+
   def set_up_twitter_client
     client = Twitter::REST::Client.new do |config|
       config.consumer_key = ENV["TWITTER_KEY"]
@@ -69,4 +75,21 @@ class Identity < ActiveRecord::Base
     client
   end
 
-end
+  def set_up_google_plus_client     # not in use, since Google APIs don't allow posting
+    client = Google::APIClient.new
+
+    # client.authorization.client_id = ENV["GOOGLE_PLUS_KEY"]
+    # client.authorization.client_secret = ENV["GOOGLE_PLUS_SECRET"]
+    # client.authorization.scope = ['plus.login', 'userinfo.profile']
+
+    client.authorization.access_token = oauth_token
+    plus = client.discovered_api('plus')
+
+    result = client.execute(
+      :api_method => plus.activities.list,
+      :parameters => {'collection' => 'public', 'userId' => 'me'} )
+
+    client
+  end
+
+end 
