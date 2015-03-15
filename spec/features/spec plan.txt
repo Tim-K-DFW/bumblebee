@@ -1,0 +1,50 @@
+LOGIN AND LOGOUT
+
+  4 different tests LOG IN INTO #{provider} - make it an iteration
+    log out of logged in
+    click on login link
+    expect to see "logged into <provider> as"
+    click on logout link
+    expect to see "log in to post..."
+
+
+POST
+  
+  none selected - message about none selected
+  after seeing message status - clicking on 'post another' brings back home screen
+
+  NOT LOGGED IN
+    before
+      logout from all
+
+    TRY TO POST TO ONE RANDOM
+    expect message '...cannot post on <provider> until you log in
+    
+  LOGGED IN
+    before
+      login to all
+
+    POST to each 
+      for each network
+        expect message to have network name
+        expect message to have '...success...'
+        expect message to not have other networks   
+
+    POST TO COLLECTION
+      pick random (between 1 and 4)
+      for each network
+        expect message to have network name
+        expect message to have '...success...'
+        expect message to not networks (args - those not picked)
+
+MACROS
+  array of providers
+  login(one)
+  logout(one)
+  login(all)
+  logout(all)
+
+SHARED EXAMPLES
+  message has network name
+  message has 'success'
+  message has no networks (agrs)

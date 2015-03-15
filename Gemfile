@@ -30,10 +30,6 @@ gem 'databasedotcom-rails'
 gem 'omniauth-linkedin'
 gem 'linkedin'
 
-gem 'omniauth-google-oauth2'
-gem 'google-api-client', :require => 'google/api_client'
-
-
 group :development do
   gem 'thin'
   gem "better_errors"
