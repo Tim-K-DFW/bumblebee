@@ -6,7 +6,7 @@
     - else
       - status.each do |provider|
         %p
-          %strong= "To #{provider[0].to_s.humanize}:"
+          %strong= "To #{pretty_provider_name(provider[0])}:"
           = provider[1]
     %br
     %br

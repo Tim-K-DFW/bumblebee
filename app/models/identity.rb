@@ -17,8 +17,8 @@ class Identity < ActiveRecord::Base
 
   def get_profile_data_from_facebook(auth)
     self.screen_name = auth.info.name
-    self.image_url = auth.info.image
     self.url = auth.info.urls.Facebook
+    self.image_url = auth.info.image
   end
 
   def get_profile_data_from_twitter(auth)

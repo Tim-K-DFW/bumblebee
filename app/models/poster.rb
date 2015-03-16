@@ -1,4 +1,5 @@
 class Poster
+  include ApplicationHelper
   attr_accessor :body, :providers, :author, :status, :logins
   POST_METHODS = { twitter: 'update(post)',
                    facebook: 'put_connections("me", "feed", :message => post)',
@@ -18,7 +19,7 @@ class Poster
         @author = Identity.where(provider: provider, uid: logins[provider]).first
         status[provider] = instance_eval("post_to_#{provider}(body)")
       else
-        status[provider] = "You cannot post on #{provider.to_s.humanize} until you log in. To log in, just click the link above."
+        status[provider] = "You cannot post on #{pretty_provider_name(provider)} until you log in. To log in, just click the link above."
       end
     end
   end
@@ -41,11 +42,7 @@ class Poster
 
   def get_providers(args)
     result = []
-    result << 'twitter'.to_sym if args[:to_twitter] == '1'
-    result << 'facebook'.to_sym if args[:to_facebook] == '1'
-    result << 'salesforce'.to_sym if args[:to_salesforce] == '1'
-    result << 'linkedin'.to_sym if args[:to_linkedin] == '1'
-    result << 'google_oauth2'.to_sym if args[:to_google_plus] == '1'
+    POST_METHODS.keys.each {|provider| result << provider if args[provider] == '1'}
     result
   end
 

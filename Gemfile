@@ -15,6 +15,8 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'pg'
 gem 'figaro'
+gem 'fabrication'
+gem 'faker'
 
 gem 'twitter', '~> 5.3.1'
 gem 'omniauth-twitter', '~> 1.0.1'

@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   def logins_from_session
     result = {}
-    [:facebook, :twitter, :salesforce, :linkedin, :google_oauth2].each do |provider|
+    Poster::POST_METHODS.keys.each do |provider|
       result[provider] = session[provider] if session[provider]
     end
     result

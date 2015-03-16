@@ -1,26 +1,12 @@
 PROVIDERS = %w(facebook twitter salesforce linkedin)
 
-# def set_up_session(provider)
-#   @identity = Identity.from_omniauth(env['omniauth.auth'])
-#   session[provider] = @identity.uid
-#   redirect_to root_path
-# end
-
-# def end_session(provider)
-#   session[params["provider"]] = nil
-#   redirect_to root_path
-# end
-
-# def logged_in?(provider)
-#   binding.pry
-#   !!session[provider]
-# end
-
-# def current_identity(provider)
-#   logged_in?(provider) ? Identity.where(provider: provider, uid: session[provider]).first : nil
-# end
-
 def logged_in?(provider)
-  binding.pry
-  page.has_content?("logged into #{provider.to_s.humanize}")
+  page.has_content?("Logged into #{provider == :linkedin ? 'LinkedIn' : provider.to_s.humanize}")
+end
+
+def seed_session_with_logins
+  session[:facebook] = "999"
+  session[:twitter] = "999"
+  session[:linkedin] = "999"
+  session[:salesforce] = "999"
 end
