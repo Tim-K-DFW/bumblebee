@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get 'signout/:provider', to: 'sessions#destroy', as: 'signout'
   resources :posts, only: [:new, :create]
   root to: 'posts#new'
+
+  get '/dialog/oauth', to: 'sessions#add'
 end
