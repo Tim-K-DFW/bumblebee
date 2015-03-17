@@ -17,3 +17,7 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore local db settings
+/config/database_local.yml
+/config/database_remote.yml

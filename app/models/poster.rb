@@ -48,7 +48,7 @@ class Poster
 
   def set_up_twitter_client
     client = Twitter::REST::Client.new do |config|
-      config.consumer_key = ENV["TWITTER_KEY"]
+      config.consumer_key = ENV['TWITTER_KEY']
       config.consumer_secret = ENV["TWITTER_SECRET"]
       config.access_token = author.oauth_token
       config.access_token_secret = author.oauth_secret
@@ -68,11 +68,12 @@ class Poster
   
   def set_up_facebook_client
     client = Koala::Facebook::API.new(author.oauth_token)
+    client
   end
 
   def set_up_linkedin_client
     client = LinkedIn::Client.new(ENV["LINKEDIN_KEY"], ENV["LINKEDIN_SECRET"])
     client.authorize_from_access(author.oauth_token, author.oauth_secret)
     client
-  end  
+  end
 end

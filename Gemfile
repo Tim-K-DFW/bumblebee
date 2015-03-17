@@ -17,8 +17,9 @@ gem 'pg'
 gem 'figaro'
 gem 'fabrication'
 gem 'faker'
+gem 'http', '0.6.0'
 
-gem 'twitter', '~> 5.3.1'
+gem 'twitter', '>= 5.14.0'
 gem 'omniauth-twitter', '~> 1.0.1'
 
 gem 'omniauth-facebook'
@@ -41,7 +42,7 @@ end
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
-  gem 'rspec-rails', '2.99'
+  gem 'rspec-rails', '3.2.0'
   gem 'shoulda-matchers', require: false
 end
 
@@ -50,6 +51,8 @@ group :test do
   gem 'capybara'
   gem 'capybara-mechanize'
   gem 'mechanize'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :production do

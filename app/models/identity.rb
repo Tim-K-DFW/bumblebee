@@ -7,7 +7,6 @@ class Identity < ActiveRecord::Base
       identity.uid = auth.uid
       identity.oauth_token = auth.credentials.token
       identity.oauth_secret = auth.credentials.secret
-      identity.user_id = User.first.blank? ? User.create.id : User.first.id
       identity.refresh_token = auth.credentials.refresh_token
       identity.instance_url = auth.credentials.instance_url
       instance_eval("identity.get_profile_data_from_#{identity.provider}(auth)")

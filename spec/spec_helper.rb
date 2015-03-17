@@ -5,6 +5,28 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'vcr'
+require 'webmock/rspec'
+
+
+real_requests = ENV['REAL_REQUESTS']
+
+VCR.configure do |config|
+  config.cassette_library_dir  = Rails.root.join('spec', 'cassettes')
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.allow_http_connections_when_no_cassette = true if real_requests
+  config.ignore_localhost = true
+end
+
+#------------------ alternative setup from a VCR article - just in case
+# VCR.configure do |c|
+#     c.hook_into :webmock
+#     c.cassette_library_dir = 'spec/support/vcr_cassettes'
+#     c.configure_rspec_metadata!
+#     c.allow_http_connections_when_no_cassette = true if real_requests
+#     c.default_cassette_options = {:record => :new_episodes} 
+# end
 
 OmniAuth.config.test_mode = true
 
@@ -66,4 +88,8 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/v/3-0/docs
   config.infer_spec_type_from_file_location!
   config.include(OmniauthMacros)
+
+  config.before(:each) do
+    VCR.eject_cassette
+  end if real_requests
 end
