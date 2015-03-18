@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara/mechanize'
 require 'vcr'
 require 'webmock/rspec'
 
@@ -18,15 +19,6 @@ VCR.configure do |config|
   config.allow_http_connections_when_no_cassette = true if real_requests
   config.ignore_localhost = true
 end
-
-#------------------ alternative setup from a VCR article - just in case
-# VCR.configure do |c|
-#     c.hook_into :webmock
-#     c.cassette_library_dir = 'spec/support/vcr_cassettes'
-#     c.configure_rspec_metadata!
-#     c.allow_http_connections_when_no_cassette = true if real_requests
-#     c.default_cassette_options = {:record => :new_episodes} 
-# end
 
 OmniAuth.config.test_mode = true
 
@@ -91,5 +83,5 @@ RSpec.configure do |config|
 
   config.before(:each) do
     VCR.eject_cassette
-  end if real_requests
+  end if real_requests == 'true'
 end
