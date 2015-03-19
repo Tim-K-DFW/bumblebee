@@ -15,6 +15,19 @@ def set_up_capybara_internal
   Capybara.current_driver = :rack_test
 end
 
+def mock_poster_instance
+  mock_poster_class  
+  fabricate_poster_instance
+end
+
+def mock_poster_class
+  Poster::POST_METHODS.keys.each do |provider|
+    eval("allow_any_instance_of(Poster).to receive(:post_to_#{provider}) do |arg|
+      arg.body == 'fake error' ? 'Error. Try again or try posting directly on #{provider.to_s.humanize} website.' : 'Success!'
+    end")
+  end
+end
+
 def fabricate_poster_instance
   post = { body: Faker::Lorem.word }
   Poster::POST_METHODS.keys.each { |provider| post[provider.to_s] = ["0","1"].sample
@@ -30,14 +43,4 @@ def fabricate_logins
     result[provider] = 'fake_uid' if coin_flip == 1
   end
   result
-end
-
-def set_up_posting_mock
-  post = fabricate_poster_instance
-  Poster::POST_METHODS.keys.each do |provider|
-    eval("allow(post).to receive(:post_to_#{provider}) do |arg|
-      'posted to #{provider}!'
-    end")
-  end
-  post
 end
