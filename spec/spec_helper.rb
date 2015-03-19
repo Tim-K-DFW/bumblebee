@@ -12,13 +12,13 @@ require 'webmock/rspec'
 
 real_requests = ENV['REAL_REQUESTS']
 
-VCR.configure do |config|
-  config.cassette_library_dir  = Rails.root.join('spec', 'cassettes')
-  config.hook_into :webmock
-  config.configure_rspec_metadata!
-  config.allow_http_connections_when_no_cassette = true if real_requests
-  config.ignore_localhost = true
-end
+# VCR.configure do |config|
+#   config.cassette_library_dir  = Rails.root.join('spec', 'cassettes')
+#   config.hook_into :webmock
+#   config.configure_rspec_metadata!
+#   config.allow_http_connections_when_no_cassette = true if real_requests
+#   config.ignore_localhost = true
+# end
 
 OmniAuth.config.test_mode = true
 

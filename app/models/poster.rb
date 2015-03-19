@@ -42,7 +42,9 @@ class Poster
 
   def get_providers(args)
     result = []
-    POST_METHODS.keys.each {|provider| result << provider if args[provider] == '1'}
+    POST_METHODS.keys.each do |provider|
+      result << provider if args[provider.to_s] == '1'
+    end
     result
   end
 
