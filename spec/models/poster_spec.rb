@@ -1,10 +1,9 @@
 require 'spec_helper'
 
+# only one master method is being tested, becuase the rest of methods feed into it
+
 describe Poster do
-  let!(:twitter_identity) { Fabricate(:identity, provider: 'twitter') }
-  let!(:facebook_identity) { Fabricate(:identity, provider: 'facebook') }
-  let!(:linkedin_identity) { Fabricate(:identity, provider: 'linkedin') }
-  let!(:salesforce_identity) { Fabricate(:identity, provider: 'salesforce') }
+  before { fabricate_identities }
   let!(:poster) { mock_poster_instance }
 
   describe '#batch_publish' do
@@ -54,12 +53,4 @@ describe Poster do
       end
     end # context 'when logged in into a network'
   end # '#batch_publish'
-
-  describe '#post_to_provider'
-  describe '#get_providers'
-  describe '#set_up_twitter_client'
-  describe '#set_up_facebook_client'
-  describe '#set_up_linkedin_client'
-  describe '#set_up_salesforce_client'
-  
 end

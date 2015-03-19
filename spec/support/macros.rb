@@ -15,6 +15,10 @@ def set_up_capybara_internal
   Capybara.current_driver = :rack_test
 end
 
+def fabricate_identities
+  Poster::POST_METHODS.keys.each { |provider| Fabricate(:identity, provider: provider.to_s) }
+end
+
 def mock_poster_instance
   mock_poster_class  
   fabricate_poster_instance
@@ -33,7 +37,7 @@ def fabricate_poster_instance
   Poster::POST_METHODS.keys.each { |provider| post[provider.to_s] = ["0","1"].sample
 }
   logins = fabricate_logins
-  p = Poster.new(post, logins)
+  Poster.new(post, logins)
 end
 
 def fabricate_logins

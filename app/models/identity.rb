@@ -1,5 +1,4 @@
 class Identity < ActiveRecord::Base
-  belongs_to :user
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |identity|
@@ -37,4 +36,4 @@ class Identity < ActiveRecord::Base
     self.url = auth.info.urls.public_profile
     self.image_url = auth.info.image
   end
-end 
+end

@@ -3,9 +3,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    poster = Poster.new(params[:post], logins_from_session)
-    poster.batch_publish
-    render '/posts/create', locals: {status: poster.status}
+    @poster = Poster.new(params[:post], logins_from_session)
+    @poster.batch_publish
+    render '/posts/create', locals: {status: @poster.status}
   end
 
   private
