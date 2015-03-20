@@ -16,6 +16,7 @@ I realize it's not very "integrateable" as it stands now. At the very least, it 
 2. Add `identities` table.
 3. Add gems to the gemfile.
 4. Add OmniAuth mocking to `spec_helper.rb`.
+5. Add OmniAuth initializer.
 
 
 ## GENERAL
@@ -100,7 +101,7 @@ One last thing, if you decide to use Figaro, after deployment make sure to run `
 
 To use `Identity` model, you'll need to create `identities` table with the following schema:
 
-```
+```ruby
   create_table "identities", force: true do |t|
     t.string   "provider"
     t.string   "uid"
@@ -133,5 +134,18 @@ Spec.configure do |config|
 ...
   config.include(OmniauthMacros)
 ...
+end
+```
+
+##. 5. ADD OMNIAUTH INITIALIZER
+
+Create `omniauth.rb` file in your `config/initializers` folder as follows:
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"]
+  provider :facebook, ENV["FACEBOOK_KEY"], ENV["FACEBOOK_SECRET"], {:scope => 'publish_actions', :image_size => 'square'}
+  provider :salesforce, ENV["SALESFORCE_KEY"], ENV["SALESFORCE_SECRET"]
+  provider :linkedin, ENV["LINKEDIN_KEY"], ENV["LINKEDIN_SECRET"], {:scope => 'r_basicprofile w_share rw_nus'}
 end
 ```

@@ -1,5 +1,5 @@
+#
 class Identity < ActiveRecord::Base
-
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |identity|
       identity.provider = auth.provider

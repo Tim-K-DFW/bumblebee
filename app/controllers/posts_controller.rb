@@ -1,3 +1,4 @@
+#
 class PostsController < ApplicationController
   def new
   end
@@ -5,7 +6,7 @@ class PostsController < ApplicationController
   def create
     @poster = Poster.new(params[:post], logins_from_session)
     @poster.batch_publish
-    render '/posts/create', locals: {status: @poster.status}
+    render '/posts/create', locals: { status: @poster.status }
   end
 
   private
@@ -17,5 +18,4 @@ class PostsController < ApplicationController
     end
     result
   end
-
 end

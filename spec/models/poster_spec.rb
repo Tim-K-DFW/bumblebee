@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-# only one master method is being tested, becuase the rest of methods feed into it
+# only one master method is being tested,as the rest of methods feed into it
 
 describe Poster do
   before { fabricate_identities }
