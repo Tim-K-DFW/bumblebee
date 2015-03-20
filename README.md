@@ -149,3 +149,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :linkedin, ENV["LINKEDIN_KEY"], ENV["LINKEDIN_SECRET"], {:scope => 'r_basicprofile w_share rw_nus'}
 end
 ```
+
+### Credits
+Thanks to Stan Carver from <a href="http://www.mercuryflight.com/">Mercury Flight</a> for patience and support.
