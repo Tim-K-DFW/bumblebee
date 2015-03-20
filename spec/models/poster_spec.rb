@@ -46,10 +46,10 @@ describe Poster do
       end
 
       it 'does not change status of providers which user did not select' do
-          poster.batch_publish
-          poster.providers.each do |provider|
-            expect(poster.status[:provider]).to be_nil unless poster.providers.include?(:provider)
-          end
+        poster.batch_publish
+        poster.providers.each do |provider|
+          expect(poster.status[:provider]).to be_nil unless poster.providers.include?(:provider)
+        end
       end
     end # context 'when logged in into a network'
   end # '#batch_publish'

@@ -6,7 +6,7 @@ def set_up_capybara_external
   OmniAuth.config.test_mode = false
   Capybara.current_driver = :mechanize
   @agent ||= Mechanize.new.tap do |agent|
-    agent.set_proxy("localhost", 3000)
+    agent.set_proxy('localhost', 3000)
   end
 end
 
@@ -20,22 +20,22 @@ def fabricate_identities
 end
 
 def mock_poster_instance
-  mock_poster_class  
+  mock_poster_class
   fabricate_poster_instance
 end
 
 def mock_poster_class
   Poster::POST_METHODS.keys.each do |provider|
     eval("allow_any_instance_of(Poster).to receive(:post_to_#{provider}) do |arg|
-      arg.body == 'fake error' ? 'Error. Try again or try posting directly on #{provider.to_s.humanize} website.' : 'Success!'
+      arg.body == 'fake error' ? 'Error. Try again or try posting
+      directly on #{provider.to_s.humanize} website.' : 'Success!'
     end")
   end
 end
 
 def fabricate_poster_instance
   post = { body: Faker::Lorem.word }
-  Poster::POST_METHODS.keys.each { |provider| post[provider.to_s] = ["0","1"].sample
-}
+  Poster::POST_METHODS.keys.each { |provider| post[provider.to_s] = ['0', '1'].sample }
   logins = fabricate_logins
   Poster.new(post, logins)
 end

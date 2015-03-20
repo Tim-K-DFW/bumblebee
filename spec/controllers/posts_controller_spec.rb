@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PostsController do
   describe 'POST create' do
-    let! (:params) { {"post"=>{"body"=>"qwer", "twitter"=>"1", "facebook"=>"1", "linkedin"=>"1", "salesforce"=>"1"}} }
+    let! (:params) { { 'post' => { 'body' => 'qwer', 'twitter' => '1', 'facebook' => '1', 'linkedin' => '1', 'salesforce' => '1' } } }
     before do
       fabricate_identities
       mock_poster_class
@@ -21,7 +21,10 @@ describe PostsController do
     it 'creates a Poster object with IDs of logged in identities' do
       Poster::POST_METHODS.keys.each { |provider| session[provider] = 'fake_uid' }
       post :create, params
-      expect(assigns(:poster).logins).to eq({:facebook => 'fake_uid', :twitter => 'fake_uid', :linkedin => 'fake_uid', :salesforce => 'fake_uid'})
+      expect(assigns(:poster).logins).to eq(facebook: 'fake_uid',
+                                            twitter: 'fake_uid',
+                                            linkedin: 'fake_uid',
+                                            salesforce: 'fake_uid')
     end
 
     it 'calls #batch_publish on Poster instance' do
