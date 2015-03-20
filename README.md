@@ -137,7 +137,7 @@ Spec.configure do |config|
 end
 ```
 
-##. 5. ADD OMNIAUTH INITIALIZER
+## 5. ADD OMNIAUTH INITIALIZER
 
 Create `omniauth.rb` file in your `config/initializers` folder as follows:
 
