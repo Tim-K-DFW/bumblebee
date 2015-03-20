@@ -9,11 +9,11 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
-# gem 'spring',        group: :development
-gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'pg'
+
+# gems specific to this app
 gem 'figaro'
 gem 'fabrication'
 gem 'faker'
