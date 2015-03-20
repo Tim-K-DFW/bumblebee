@@ -1,6 +1,16 @@
-## OVERVIEW
+# BUNDLE POSTING
+### to Twitter, LinkedIn, Facebook and Salesforce
 
-Steps necessary in addition to copying all the files:
+**Preview:** deployed at https://arcane-earth-9950.herokuapp.com.
+
+**Key feature:** has no relation to any User and/or app authentication models and behaves independtely thereof.
+
+**Status:** Prototype. I will eventually make a gem out of it.
+
+
+## INTEGRATION OVERVIEW
+
+I realize it's not very "integrateable" as it stands now. At the very least, it illustrates how to efficiently and cleanly coordinate batch posting without interfering with any of existing authentication and/or users. Steps necessary in addition to copying all the files:
 
 1. Set up network applications.
 2. Add `identities` table.
@@ -24,7 +34,7 @@ In every network you plan to integrate with, you'll need to create an app. Just 
 Make sure to have the following URLs in OAuth redirect/callback setting:
 
 - http://localhost:3000/
-- http://www.example.com/ (if you decide to hit live APIs from your test suite at some point)
+- http://www.example.com/ (optional - if you decide to hit live APIs from your test suite at some point)
 - URL of your deployed app.
 
   
@@ -105,7 +115,6 @@ To use `Identity` model, you'll need to create `identities` table with the follo
     t.string   "refresh_token"
     t.string   "instance_url"
   end
-
 ```
 
 
