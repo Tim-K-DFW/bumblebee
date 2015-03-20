@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: myflix-dev
+  database: auth-dev
   pool: 5
   host: localhost
   username: action
@@ -10,7 +10,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: myflix-test
+  database: auth-test
   pool: 5
   host: localhost
   username: action
@@ -19,7 +19,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: myflix-prod
+  database: auth-prod
   pool: 5
   host: localhost
   username: action

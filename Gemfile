@@ -49,10 +49,6 @@ end
 group :test do
   gem 'database_cleaner', '1.2.0'
   gem 'capybara'
-  gem 'capybara-mechanize'
-  gem 'mechanize'
-  gem 'vcr'
-  gem 'webmock'
 end
 
 group :production do

@@ -5,23 +5,8 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rails'
 require 'capybara/rspec'
-require 'capybara/mechanize'
-require 'vcr'
-require 'webmock/rspec'
-
-real_requests = ENV['REAL_REQUESTS']
-
-# VCR.configure do |config|
-#   config.cassette_library_dir  = Rails.root.join('spec', 'cassettes')
-#   config.hook_into :webmock
-#   config.configure_rspec_metadata!
-#   config.allow_http_connections_when_no_cassette = true if real_requests
-#   config.ignore_localhost = true
-# end
 
 OmniAuth.config.test_mode = true
-
-WebMock.disable_net_connect!(allow_localhost: true)
 
 # load "#{Rails.root}/db/seeds.rb"
 
@@ -81,22 +66,8 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/v/3-0/docs
   config.infer_spec_type_from_file_location!
   config.include(OmniauthMacros)
-
-  config.before(:each) do
-    stub_request(:post, "https://graph.facebook.com/v2.0/me/feed").
-      with(:body => {"access_token"=>"mock_token", "message"=>/.*/}).
-      to_return(:status => 200, :body => "", :headers => {})
-    stub_request(:post, "https://api.twitter.com/1.1/statuses/update.json").
-      with(:body => {"status"=>/.*/}).
-      to_return(:status => 200, :body => "", :headers => {})
-
-  end
   
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
-
-  config.before(:each) do
-    VCR.eject_cassette
-  end if real_requests == 'true'
 end
