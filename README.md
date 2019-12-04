@@ -1,4 +1,4 @@
-**was deployed to Heroku, inactive as of 2019**
+*was deployed to Heroku, inactive as of 2019*
 
 # BUNDLE POSTING
 ### to Twitter, LinkedIn, Facebook and Salesforce
